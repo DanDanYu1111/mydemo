@@ -16,8 +16,8 @@ public class Producer {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("121.196.207.12"); // 替换为你的 RabbitMQ 服务器地址
         factory.setPort(5672);
-        factory.setUsername("ddy"); // 替换为你的用户名
-        factory.setPassword("ddy1111"); // 替换为你的密码
+        factory.setUsername("guest"); // 替换为你的用户名
+        factory.setPassword("guest"); // 替换为你的密码
 
         // 创建连接
         try (Connection connection = factory.newConnection();

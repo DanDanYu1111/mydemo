@@ -1,0 +1,38 @@
+server:
+  port: 39080
+
+param:
+  aaa: 99999999
+
+spring:
+  application:
+    name: my-demo
+  rabbitmq:
+    host: 121.196.207.12
+    port: 5672
+    username: ddy
+    password: ddy1111
+    virtualHost: /
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.98.225.167:3306/uic2?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&rewriteBatchedStatements=true
+    username: uic
+    password: uicisgood@999
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  # Nacos 服务地址
+        namespace: ddy-test  # Nacos 命名空间 ID（可选）
+        group: DEFAULT_GROUP  # 配置分组名称（可选，默认为 DEFAULT_GROUP）
+        data-id: my-demo
+      config:
+        server-addr: localhost:8848  # Nacos 配置中心地址
+        namespace: ddy-test  # Nacos 命名空间 ID（可选）
+        group: DEFAULT_GROUP  # 配置分组名称（可选）
+        data-id: my-demo  # 配置 ID（通常与 spring.application.name 相同）
+        import-check:
+          enabled: false
+        refresh-enabled: true
+        file-extension: yaml
+        refresh-behavior: all_beans
