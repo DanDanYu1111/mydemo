@@ -10,8 +10,8 @@ spring:
   rabbitmq:
     host: 121.196.207.12
     port: 5672
-    username: ddy
-    password: ddy1111
+    username: guest
+    password: guest
     virtualHost: /
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

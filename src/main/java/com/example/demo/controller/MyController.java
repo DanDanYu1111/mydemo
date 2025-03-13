@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.RabbitMQProducer;
+import com.example.demo.service.rabbitmq.ConsumerListener;
+import com.example.demo.service.rabbitmq.ProducerService;
 import com.example.demo.service.TableService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +18,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/input")
@@ -29,9 +29,11 @@ public class MyController {
     @Value("${param.aaa}")
     private String param;
     @Autowired
-    RabbitMQProducer rabbitMQProducer;
-    @Autowired
     TableService tableService;
+    @Autowired
+    ProducerService producerService;
+    @Autowired
+    private ConsumerListener consumerListener;
 
     @GetMapping("/table")
     public String table(@RequestParam String table) {
@@ -47,6 +49,13 @@ public class MyController {
     public String get2(@RequestParam String param){
         log.info("param:{}",param);
         return param;
+    }
+
+    @GetMapping("/sendMsg")
+    public String sendMsg(){
+        String message=""+LocalDateTime.now();
+        producerService.sendMessage(message);
+        return message;
     }
 
     @GetMapping("/get3")
