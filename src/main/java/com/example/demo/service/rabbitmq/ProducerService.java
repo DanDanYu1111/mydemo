@@ -10,6 +10,6 @@ public class ProducerService {
     private RabbitTemplate rabbitTemplate;
 
     public void sendMessage(String msg) {
-            rabbitTemplate.convertAndSend("","ddy01",msg);
+            rabbitTemplate.convertAndSend("ddy-fanout","sssss",msg);
     }
 }
